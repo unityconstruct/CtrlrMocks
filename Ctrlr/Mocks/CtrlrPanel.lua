@@ -5,19 +5,19 @@ local CtrlrLabel = require "Ctrlr.Mocks.CtrlrLabel"
 local CtrlrModulator = require "Ctrlr.Mocks.CtrlrModulator"
 
 ---@class CtrlrPanel
-local CtrlrPanel = {}
+CtrlrPanel = {}
 ---CtrlrPanel
 ---@param o? any
 ---@return CtrlrPanel
 function CtrlrPanel:new(o)
     o = o or {}
-    setmetatable({},self)
+    setmetatable(o,self)
     self.__index = self
+    -- o = o or {}
+    -- setmetatable({},self)
+    -- self.__index = self
     -- self.what = what(CtrlrPanel)
-
-    --caller:
-    -- local CtrlrPanel = CtrlrPanel
-    return self
+    return o
 end
 
 function CtrlrPanel:setGlobalVariable()
@@ -42,7 +42,9 @@ end
 ---@param modname string
 ---@return CtrlrModulator
 function CtrlrPanel:getModulator(modname)
-    return CtrlrModulator:new()
+    local mod = CtrlrModulator:new()
+    mod.name = modname
+    return mod
 end
 function CtrlrPanel:getObjectTree()
 end
@@ -106,7 +108,9 @@ end
 ---@param compName string
 ---@return CtrlrComponent component
 function CtrlrPanel:getComponent(compName)
-    return CtrlrComponent:new()
+    local comp = CtrlrComponent:new()
+    comp.name = compName
+    return comp
 end
 function CtrlrPanel:getBootstrapState()
 end
@@ -124,7 +128,10 @@ end
 ---@param modname string
 ---@return CtrlrModulator
 function CtrlrPanel:getModulatorByName(modname)
-    return CtrlrModulator:new()
+     local mod = CtrlrModulator:new()
+     mod.name = modname
+     return mod
+
 end
 function CtrlrPanel:getModulatorsWildcard()
 end
