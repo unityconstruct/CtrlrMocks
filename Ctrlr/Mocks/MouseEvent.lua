@@ -8,9 +8,6 @@ function MouseEvent:new(o)
     setmetatable({},self)
     self.__index = self
     self.what = what(MouseEvent)
-
-    --caller:
-    -- local MouseEvent = MouseEvent:new()
     return self
 end
 

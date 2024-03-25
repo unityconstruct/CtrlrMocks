@@ -1,16 +1,37 @@
-local CtrlrValueMap = require "Ctrlr.Mocks.CtrlrValueMap"
-local ValueTree     = require "Ctrlr.Mocks.ValueTree"
-local CtrlrModulator= require "Ctrlr.Mocks.CtrlrModulator"
+-- local CtrlrValueMap = require "Ctrlr.Mocks.CtrlrValueMap"
+-- local ValueTree     = require "Ctrlr.Mocks.ValueTree"
+-- local CtrlrModulator= require "Ctrlr.Mocks.CtrlrModulator"
 ---@class CtrlrComponent
-local CtrlrComponent = {}
+CtrlrComponent = {}
 ---CtrlrComponent
 ---@param o? any
 ---@return CtrlrComponent
 function CtrlrComponent:new(o)
     o = o or {}
-    setmetatable({},self)
+    setmetatable(o,self)
     self.__index = self
-    self.what = what(CtrlrComponent)
+    -- self.what = what(CtrlrComponent)
+    ---@type string
+    self.name = "compname"
+    ---@type string
+    self.visible_name = "compname"
+    ---@type number
+    self.value = 45
+    ---@type number
+    self.max_value = 100
+    ---@type number
+    self.min_value = 0
+    ---@type string
+    self.text = "text"
+    ---@type boolean
+    self.visible = true
+    ---@type boolean
+    self.enabled = true
+    ---@type number
+    self.width = 20
+    ---@type number
+    self.height = 10
+    
     return self
 end
 
@@ -28,13 +49,19 @@ function CtrlrComponent:setMouseCursor()
 end
 function CtrlrComponent:getMaximum()
 end
-function CtrlrComponent:setComponentText()
+---set text
+---@param text string
+function CtrlrComponent:setComponentText(text)
+    self.text = text
 end
 function CtrlrComponent:isFocusContainer()
 end
 function CtrlrComponent:parentHierarchyChanged()
 end
+---get is visible
+---@return  boolean visible
 function CtrlrComponent:isVisible()
+    return self.visible
 end
 function CtrlrComponent:setExplicitFocusOrder()
 end
@@ -86,7 +113,10 @@ function CtrlrComponent:getScreenBounds()
 end
 function CtrlrComponent:focusOfChildComponentChanged()
 end
+---get isEnabled
+---@return boolean enabled
 function CtrlrComponent:isEnabled()
+    return self.enabled
 end
 function CtrlrComponent:getParentComponent()
 end
@@ -168,7 +198,10 @@ function CtrlrComponent:centreWithSize()
 end
 function CtrlrComponent:grabKeyboardFocus()
 end
-function CtrlrComponent:setVisible()
+---set visibility
+---@param isVisible boolean
+function CtrlrComponent:setVisible(isVisible)
+    self.visible = isVisible
 end
 function CtrlrComponent:addAndMakeVisible()
 end
@@ -190,7 +223,14 @@ function CtrlrComponent:isShowing()
 end
 function CtrlrComponent:getLocalBounds()
 end
-function CtrlrComponent:getPropertyString()
+---Get property
+---@param propName string
+---@return string propertyString
+function CtrlrComponent:getPropertyString(propName)
+    if(propName == "") then return ""
+    elseif(propName == "") then return ""
+    else return ""
+    end
 end
 function CtrlrComponent:handleCommandMessage()
 end
@@ -220,7 +260,11 @@ function CtrlrComponent:getLookAndFeel()
 end
 function CtrlrComponent:enablementChanged()
 end
-function CtrlrComponent:setEnabled()
+
+---set enabled
+---@param isEnabled boolean
+function CtrlrComponent:setEnabled(isEnabled)
+    self.enabled = isEnabled
 end
 function CtrlrComponent:getComponentEffect()
 end
@@ -234,7 +278,11 @@ function CtrlrComponent:setComponentMidiValue()
 end
 function CtrlrComponent:setBoundsInset()
 end
+
+---get text
+---@return string text
 function CtrlrComponent:getComponentText()
+    return self.text
 end
 function CtrlrComponent:getBottom()
 end
@@ -254,9 +302,16 @@ function CtrlrComponent:setMidiValue()
 end
 function CtrlrComponent:getNumChildComponents()
 end
+
+---get height
+---@return number height
 function CtrlrComponent:getHeight()
+    return self.height
 end
-function CtrlrComponent:setName()
+---set name
+---@param name string
+function CtrlrComponent:setName(name)
+    self.name = name
 end
 function CtrlrComponent:getMinimum()
 end
@@ -280,7 +335,10 @@ end
 ---@param propName string: property name
 ---@return string propertyValue: property value
 function CtrlrComponent:getProperty(propName)
-    return "PropValue"
+    if(propName == "") then return ""
+    elseif(propName == "") then return ""
+    else return "PropValue"
+    end
 end
 function CtrlrComponent:hasKeyboardFocus()
 end
@@ -308,7 +366,12 @@ function CtrlrComponent.setPropertyString(CtlrComponent,propname,propvalue)
 end
 function CtrlrComponent:addToDesktop()
 end
-function CtrlrComponent:setProperty()
+
+---set proprty
+---@param propName string
+---@param propValue number
+function CtrlrComponent:setProperty(propName,propValue)
+    self[propName] = propValue
 end
 function CtrlrComponent:setTransform()
 end
@@ -320,7 +383,10 @@ function CtrlrComponent:createFocusTraverser()
 end
 function CtrlrComponent:getComponentMidiValue()
 end
-function CtrlrComponent:setValue()
+---set value
+---@param value number
+function CtrlrComponent:setValue(value)
+    self.value = value
 end
 function CtrlrComponent:parentSizeChanged()
 end
@@ -357,7 +423,10 @@ function CtrlrComponent:setPositioner()
 end
 function CtrlrComponent:setBroughtToFrontOnMouseClick()
 end
+---get value
+---@return number value
 function CtrlrComponent:getValue()
+    return self.value
 end
 function CtrlrComponent:getScreenPosition()
 end
@@ -372,6 +441,7 @@ end
 function CtrlrComponent:mouseDown()
 end
 function CtrlrComponent:getWidth()
+    return self.width
 end
 function CtrlrComponent:addChildAndSetID()
 end

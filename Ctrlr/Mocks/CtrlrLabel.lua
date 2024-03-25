@@ -5,10 +5,14 @@ local CtrlrLabel = {}
 ---@return CtrlrLabel
 function CtrlrLabel:new(o)
     o = o or {}
-    setmetatable({},self)
+    setmetatable(o,self)
     self.__index = self
-    self.what = what(CtrlrLabel)
-    return self
+    self.name = o.name or "labelname"
+    self.text = ""
+    self.visible = true
+    self.enabled = true
+    -- self.what = what(CtrlrLabel)
+    return o
 end
 
 function CtrlrLabel:getRight()
@@ -31,7 +35,10 @@ function CtrlrLabel:isFocusContainer()
 end
 function CtrlrLabel:parentHierarchyChanged()
 end
+---get isVisible
+---@return boolean visible
 function CtrlrLabel:isVisible()
+    return self.visible
 end
 function CtrlrLabel:setExplicitFocusOrder()
 end
@@ -117,11 +124,19 @@ function CtrlrLabel:getRect()
 end
 function CtrlrLabel:getChildComponent()
 end
-function CtrlrLabel:setText()
+
+---set text
+---@param text string
+function CtrlrLabel:setText(text)
+    self.text = text
 end
 function CtrlrLabel:getExplicitFocusOrder()
 end
+
+---get text
+---@return string text
 function CtrlrLabel:getText()
+    return self.text
 end
 function CtrlrLabel:setOpaque()
 end
@@ -165,7 +180,10 @@ function CtrlrLabel:centreWithSize()
 end
 function CtrlrLabel:grabKeyboardFocus()
 end
-function CtrlrLabel:setVisible()
+---set visible
+---@param isVisible boolean
+function CtrlrLabel:setVisible(isVisible)
+    self.visible = isVisible
 end
 function CtrlrLabel:addAndMakeVisible()
 end
@@ -219,7 +237,10 @@ function CtrlrLabel:toBehind()
 end
 function CtrlrLabel:getLookAndFeel()
 end
+---get environment
+---@return boolean enabled
 function CtrlrLabel:isEnabled()
+    return self.enabled
 end
 function CtrlrLabel:minimisationStateChanged()
 end
@@ -257,7 +278,10 @@ function CtrlrLabel:getNumChildComponents()
 end
 function CtrlrLabel:getHeight()
 end
-function CtrlrLabel:setName()
+---set name
+---@param name string
+function CtrlrLabel:setName(name)
+    self.name = name
 end
 function CtrlrLabel:getMidiValue()
 end
